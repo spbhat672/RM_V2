@@ -1,0 +1,55 @@
+﻿@model RMWA.Models.ResourceValue
+
+@{
+    ViewBag.Title = "_AddTagValue";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ResourceValue</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+
+        <input style="display:none" value="AddTagValue" id="AddTagValue" name="AddTagValue">
+
+        @Html.LabelFor(model => model.Resource, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Resource, ViewData["ResourceDetails"] as IEnumerable<SelectListItem>)
+            @Html.ValidationMessageFor(model => model.Resource, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Tag, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Tag, ViewData["ResourceTagDetails"] as IEnumerable<SelectListItem>)
+            @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TagValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TagValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TagValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Import file" id="ImportFile" name="ImportFile" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

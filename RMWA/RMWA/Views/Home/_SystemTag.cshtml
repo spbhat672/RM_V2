@@ -1,0 +1,41 @@
+﻿@model RMWA.Models.TagModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Create System Tag</h4>
+        <hr />
+        @using (Html.BeginForm("SystemTag", "Home", FormMethod.Post))
+        {
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input style="display:none" value="CreateSystemTag" id="CreateSystemTag" name="CreateSystemTag">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TagName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TagName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TagName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TagUOM, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TagUOM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TagUOM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+        }
+    </div>
+}
